@@ -1,0 +1,23 @@
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  generateName: java-app-example-pl-
+spec:
+  pipelineRef:
+    name: maven-pipeline
+  serviceAccountName: pipeline-sa
+  params:
+  - name: application-name
+    value: java-app-example
+  - name: dependency-git-url
+    value: https://github.com/tekton-example/common-java-dependencies.git
+  - name: application-git-url
+    value: https://github.com/tekton-example/java-app-example.git
+  - name: dockerfile-path
+    value: src/main/docker/Dockerfile.jvm
+  - name: image-name
+    value: laidbackware/java-app-example
+  workspaces:
+  - name: source
+    persistentVolumeClaim:
+      claimName: pipeline-pvc
