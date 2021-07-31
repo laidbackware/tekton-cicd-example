@@ -16,7 +16,7 @@ spec:
   - name: dockerfile-path
     value: src/main/docker/Dockerfile.jvm
   - name: image-name
-    value: laidbackware/java-app-example
+    value: docker.io/laidbackware/java-app-example
   workspaces:
   - name: source
     persistentVolumeClaim:

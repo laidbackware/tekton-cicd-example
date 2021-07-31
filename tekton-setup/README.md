@@ -1,15 +1,14 @@
 # Instructions
 
 ```
-k apply service_account.yml
+# Set contexts to correct namespace
 
-k create secret docker-registry srd-docker-registry  --docker-server=docker.io  --docker-username=abcd  --docker-password=efgh  --docker-email=ijkl -n tekton-pipelines
+# TODO script injection from Bitwarden
+kubectl create secret generic regcred --from-file=.dockerconfigjson=$HOME/.docker/config.json --type=kubernetes.io/dockerconfigjson
 
-k create secret docker-registry srd-docker-registry --docker-server=docker.io --docker-username=abcd --docker-password=efgh --docker-email=ijkl -n java-maven-demo
+#TODO use ytt to add from .ssh at
+k apply tekton-setup/github.yml
 
-# Temporarily update github.yml to add private key
-k apply service_account.yml
-# Remove public key from github.yml
-
+k apply tekton-setup/service_account.yml
 
 ```

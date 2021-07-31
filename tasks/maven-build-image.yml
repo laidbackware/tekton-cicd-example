@@ -3,9 +3,9 @@ kind: Task
 metadata:
   name: build-maven-image
   labels:
-    app.kubernetes.io/version: "0.1"
+    app.kubernetes.io/version: "0.4"
   annotations:
-    tekton.dev/pipelines.minVersion: "0.12.1"
+    tekton.dev/pipelines.minVersion: "0.21.1"
     tekton.dev/tags: image-build
 spec:
   description: >-
@@ -24,7 +24,7 @@ spec:
     description: Reference of the image buildah will produce.
   - name: BUILDER_IMAGE
     description: The location of the buildah builder image.
-    default: quay.io/buildah/stable:v1.14.8
+    default: quay.io/buildah/stable:v1.21.0
   - name: STORAGE_DRIVER
     description: Set buildah storage driver
     default: overlay
